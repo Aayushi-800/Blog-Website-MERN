@@ -14,6 +14,9 @@ This project is divided into two applications:
 The application uses **ImageKit** for image uploads and delivery.
 
 ---
+Live Demo
+
+View Live Website
 
 ## Features
 
