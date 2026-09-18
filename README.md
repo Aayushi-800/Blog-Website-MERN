@@ -16,7 +16,7 @@ The application uses **ImageKit** for image uploads and delivery.
 ---
 Live Demo
 
-View Live Website
+(https://blog-website-mern-85yz1i48m-aayushi21.vercel.app)
 
 ## Features
 
