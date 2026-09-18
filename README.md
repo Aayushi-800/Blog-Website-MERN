@@ -1,212 +1,349 @@
-# Blog Website MERN
+# Blog Website — MERN Stack
 
-A full-stack blogging platform built with the MERN stack, featuring a public reader experience, authenticated user accounts, and a dedicated writer dashboard for content management.
+A full-stack blogging platform built with the **MERN stack**, featuring a public reader experience, authenticated user accounts, and a dedicated writer dashboard for creating and managing blog posts.
 
-This project supports:
-
-- Public blog discovery and reading
-- User authentication, profile management, and password reset
-- Blog engagement with likes, dislikes, bookmarks, and share tracking
-- Moderated comments
-- Writer authentication and dashboard workflows
+---
 
 ## Overview
 
-The application is split into two apps:
+This project is divided into two applications:
 
-- `frontend/` - React + Vite client for readers and writers
-- `backend/` - Express + MongoDB API for authentication, blogs, comments, and writer tools
+* **Frontend** — React + Vite based user interface
+* **Backend** — Node.js + Express + MongoDB REST API
 
-Uploaded blog images are handled through ImageKit.
+The application uses **ImageKit** for image uploads and delivery.
 
-## Core Features
+---
+
+## Features
+
+### Reader Features
+
+* Browse published blogs
+* Read blogs with rich-text content
+* User registration and login
+* Like and dislike blogs
+* Bookmark blogs
+* Share blogs
+* Follow writers
+* View writer profiles
+* Add comments
+* View approved comments
+* Update profile
+* Change password
+* Reset password through email
+
+### Writer Features
+
+* Writer registration and login
+* Writer dashboard
+* View total blogs, published blogs and drafts
+* Create new blogs
+* Add:
+
+  * Title
+  * Subtitle
+  * Rich-text description
+  * Category
+  * Thumbnail
+* Save blogs as drafts
+* Publish and unpublish blogs
+* View personal stories
+* Delete blogs
+* Manage comments
+* Writer profile
+* Update password
+* Password reset through email
+
+---
+
+## Screenshots
 
 ### Reader Experience
 
-- Browse published blogs on the home page
-- Open individual blog pages with rich-text content
-- View approved comments on blog posts
-- Create an account or log in to interact with content
-- Like, dislike, bookmark, and share blogs
-- Submit comments for writer approval
-- Access a personal profile page with account details, liked blogs, saved blogs, and comment history
-- Update password from the profile page
-- Reset forgotten password with email verification flow
+![Login](./screenshots/login.png)
 
-### Writer Experience
+![Sign Up](./screenshots/signup.png)
 
-- Register and log in as a writer
-- Access a writer dashboard with blog, comment, and draft counts
-- Create blogs with title, subtitle, rich-text description, category, thumbnail image, and publish or draft status
-- View all authored blogs
-- Publish or unpublish blogs
-- Delete blogs
-- Review incoming comments
-- Approve or delete comments
-- View writer profile data, blogs, and related comment activity
-- Update password
-- Reset password using email and phone verification
+![Home Page](./screenshots/home.png)
+
+![About](./screenshots/about.png)
+
+![Following](./screenshots/following.png)
+
+![Writers](./screenshots/writers.png)
+
+### Writer Dashboard
+
+![Writer Dashboard](./screenshots/writer-dashboard.png)
+
+![Create Story](./screenshots/create-story.png)
+
+![My Stories](./screenshots/my-stories.png)
+
+![Comments](./screenshots/comments.png)
+
+![Writer Profile](./screenshots/writer-profile.png)
+
+---
 
 ## Tech Stack
 
 ### Frontend
 
-- React 19
-- Vite
-- React Router
-- Tailwind CSS 4
-- Axios
-- React Hot Toast
-- Quill
-- Motion
-- Styled Components
+* React 19
+* Vite
+* React Router
+* Tailwind CSS
+* Axios
+* React Hot Toast
+* React Quill
+* Motion
+* Styled Components
 
 ### Backend
 
-- Node.js
-- Express 5
-- MongoDB + Mongoose
-- JSON Web Tokens
-- Multer
-- ImageKit
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+* Multer
+* ImageKit
+
+---
 
 ## Project Structure
 
 ```text
-Blog-Website-MERN-/
-|-- backend/
-|   |-- configs/
-|   |-- controllers/
-|   |-- middleware/
-|   |-- models/
-|   |-- routes/
-|   `-- server.js
-|-- frontend/
-|   |-- src/
-|   |   |-- components/
-|   |   |-- context/
-|   |   |-- pages/
-|   |   `-- assets/
-|   `-- vite.config.js
-`-- README.md
+Blog/
+│
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│   ├── package.json
+│   └── ...
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── assets/
+│   │   └── ...
+│   ├── package.json
+│   └── ...
+│
+├── screenshots/
+│   ├── login.png
+│   ├── signup.png
+│   ├── home.png
+│   ├── about.png
+│   ├── following.png
+│   ├── writers.png
+│   ├── writer-dashboard.png
+│   ├── create-story.png
+│   ├── my-stories.png
+│   ├── comments.png
+│   └── writer-profile.png
+│
+├── .gitignore
+├── README.md
+└── package-lock.json
 ```
 
-## Authentication Model
+---
 
-This project uses two separate auth flows:
+## Authentication
 
-- `user` accounts for readers who want to comment, save blogs, and react to posts
-- `writer` accounts for authors who manage blogs and comments
+The application has two separate authentication flows:
 
-Backend middleware enforces role-based access using JWT tokens.
+### User Authentication
+
+Users can:
+
+* Register
+* Login
+* Manage their profile
+* Like and bookmark blogs
+* Follow writers
+* Comment on blogs
+* Reset their password
+
+### Writer Authentication
+
+Writers have a dedicated dashboard where they can:
+
+* Create blogs
+* Save drafts
+* Publish blogs
+* Edit/manage their stories
+* Manage comments
+* Manage their writer profile
+
+Authentication is handled using **JWT tokens** and protected routes.
+
+---
 
 ## Environment Variables
 
-Create a `.env` file inside `backend/`:
+### Backend
+
+Create a `.env` file inside the `backend` folder:
 
 ```env
 PORT=3000
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-
 IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
 IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
 ```
 
-Create a `.env` file inside `frontend/`:
+### Frontend
+
+Create a `.env` file inside the `frontend` folder:
 
 ```env
 VITE_BASE_URL=http://localhost:3000
 ```
 
-## Local Development Setup
+> Never commit `.env` files or secret credentials to GitHub.
 
-### 1. Clone the repository
+---
 
-```bash
-git clone <your-repository-url>
-cd Blog-Website-MERN-
+## API Routes
+
+### Blog
+
+```text
+/api/blog
 ```
 
-### 2. Install backend dependencies
+Handles:
+
+* Blog creation
+* Blog listing
+* Blog details
+* Publishing
+* Updating
+* Deleting
+* Likes
+* Comments
+
+### User
+
+```text
+/api/user
+```
+
+Handles:
+
+* User authentication
+* Profile
+* Password management
+* Following
+* Bookmarks
+
+### Writer
+
+```text
+/api/writer
+```
+
+Handles:
+
+* Writer registration
+* Writer login
+* Writer profile
+* Writer blogs
+* Writer dashboard
+* Comment management
+
+---
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-github-repository-url>
+cd Blog
+```
+
+### 2. Install Backend Dependencies
 
 ```bash
 cd backend
 npm install
 ```
 
-### 3. Install frontend dependencies
+### 3. Install Frontend Dependencies
+
+Open another terminal:
 
 ```bash
-cd ../frontend
+cd frontend
 npm install
 ```
 
-### 4. Start the backend server
+---
 
-From `backend/`:
+## Run the Project
 
-```bash
-npm run server
-```
+### Start Backend
 
-The API runs on:
-
-```text
-http://localhost:3000
-```
-
-### 5. Start the frontend app
-
-From `frontend/`:
+Inside the `backend` folder:
 
 ```bash
 npm run dev
 ```
 
-Vite will start the client locally and connect to the backend using `VITE_BASE_URL`.
+The backend will run on:
 
-## Available Scripts
+```text
+http://localhost:3000
+```
 
-### Backend
+### Start Frontend
 
-- `npm run server` - Start the backend with nodemon
-- `npm run dev` - Start the backend with Node.js
+Inside the `frontend` folder:
 
-### Frontend
+```bash
+npm run dev
+```
 
-- `npm run dev` - Start the Vite development server
-- `npm run build` - Create a production build
-- `npm run preview` - Preview the production build locally
-- `npm run lint` - Run ESLint
+Vite will provide the local frontend URL in the terminal.
 
-## API Areas
-
-The backend is organized into three route groups:
-
-- `/api/blog` - blog CRUD, comments, engagement
-- `/api/user` - reader auth, profile, password management
-- `/api/writer` - writer auth, dashboard, blog management, comment moderation
-
-## Notes
-
-- Only published blogs are shown publicly.
-- User comments must be approved before they appear on blog pages.
-- Blog images are uploaded to ImageKit and stored as hosted URLs.
-- Blog descriptions are stored as HTML content.
-- The backend appends `/blog` to `MONGODB_URI`, so the provided MongoDB connection string should point to your cluster base URI.
+---
 
 ## Requirements
 
-- Node.js 18+
-- MongoDB Atlas or a compatible MongoDB instance
-- ImageKit account
+Before running the project, make sure you have:
 
-## Live Demo
+* Node.js 18+
+* MongoDB
+* ImageKit account
+* Git
 
-https://blog-website-mern-x6jv.vercel.app/
+---
 
-## Status
+## Notes
 
-This repository currently includes application code and setup scripts, but no automated test suite is configured yet.
+* Only published blogs are displayed to readers.
+* Writers can keep blogs as drafts before publishing.
+* Comments require moderation before appearing publicly.
+* Blog thumbnails are uploaded and served using ImageKit.
+* Blog descriptions support rich-text HTML content.
+* MongoDB is used for storing users, writers, blogs and comments.
+
+---
+
+## Project Status
+
+The project is currently functional and includes both the **reader experience** and **writer dashboard**.
+
+There is currently no automated test suite included.
